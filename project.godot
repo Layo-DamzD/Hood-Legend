@@ -1,16 +1,95 @@
-; Engine configuration file - MINIMAL TEST VERSION
-; Stripped down to absolute basics to diagnose import issues
+; Engine configuration file for the GTA-style game project.
+; Built with Godot 4.x - supports Windows, Mac, Linux, AND Android
 
 config_version=5
 
 [application]
 config/name="Hood Legends"
-run/main_scene="res://scenes/test.tscn"
+config/description="A 3D open-world action game inspired by GTA San Andreas. Cross-platform: PC + Android."
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=0
+window/handheld/show_smallest_resolution=true
+
+[input]
+move_forward={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194320)]
+}
+move_back={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194322)]
+}
+move_left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194319)]
+}
+move_right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194321)]
+}
+jump={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":32)]
+}
+run={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194325)]
+}
+switch_character={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194306)]
+}
+enter_exit_vehicle={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":70)]
+}
+fire={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"button_index":1)]
+}
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":69)]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"keycode":4194305)]
+}
+
+[layer_names]
+3d_render/layer_1="World"
+3d_render/layer_2="Characters"
+3d_render/layer_3="Vehicles"
 
 [physics]
 3d/default_gravity=15.0
+
+[rendering]
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.5, 0.7, 0.95, 1)
+
+[android]
+package/name="com.hoodlegends.game"
+package/unique_name="com.hoodlegends.game"
+version/code=1
+version/name="1.0"
+min_sdk=21
+target_sdk=33
+architectures/armeabi-v7a=true
+architectures/arm64-v8a=true
+architectures/x86=false
+architectures/x86_64=false
+screen/immersive_mode=true
+screen/support_small=true
+screen/support_normal=true
+screen/support_large=true
+screen/support_xlarge=true
