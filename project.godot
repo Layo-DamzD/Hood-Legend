@@ -1,124 +1,16 @@
-; Engine configuration file for the GTA-style game project.
-; Built with Godot 4.x - supports Windows, Mac, Linux, AND Android
+; Engine configuration file - MINIMAL TEST VERSION
+; Stripped down to absolute basics to diagnose import issues
 
 config_version=5
 
 [application]
 config/name="Hood Legends"
-config/description="A 3D open-world action game inspired by GTA San Andreas. Cross-platform: PC + Android."
-run/main_scene="res://scenes/main.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+run/main_scene="res://scenes/test.tscn"
 config/icon="res://icon.svg"
 
 [display]
 window/size/width=1280
 window/size/height=720
-window/size/fullscreen=false
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-window/handheld/orientation=0
-window/handheld/show_smallest_resolution=true
-
-[input]
-move_forward={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194320)]
-}
-move_back={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194322)]
-}
-move_left={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194319)]
-}
-move_right={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194321)]
-}
-jump={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":32)]
-}
-run={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194325)]
-}
-switch_character={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194306)]
-}
-enter_exit_vehicle={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":70)]
-}
-fire={
-"deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"button_index":1)]
-}
-interact={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":69)]
-}
-pause={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194305)]
-}
-
-[layer_names]
-3d_render/layer_1="World"
-3d_render/layer_2="Characters"
-3d_render/layer_3="Vehicles"
 
 [physics]
 3d/default_gravity=15.0
-
-[rendering]
-anti_aliasing/quality/msaa_3d=2
-environment/defaults/default_clear_color=Color(0.5, 0.7, 0.95, 1)
-
-; === ANDROID EXPORT PRESET ===
-; Configure these after you set up Android SDK in Godot's Editor Settings
-[android]
-package/name="com.hoodlegends.game"
-package/unique_name="com.hoodlegends.game"
-version/code=1
-version/name="1.0"
-min_sdk=21
-target_sdk=33
-architectures/armeabi-v7a=true
-architectures/arm64-v8a=true
-architectures/x86=false
-architectures/x86_64=false
-keystore/debug=""
-keystore/debug_user=""
-keystore/debug_password=""
-keystore/release=""
-keystore/release_user=""
-keystore/release_password=""
-launcher_icons/main_192x192="res://icon.svg"
-launcher_icons/adaptive_main_192x192=""
-launcher_icons/adaptive_foreground_192x192=""
-launcher_icons/adaptive_background_192x192=""
-graphics/opengl_debug=false
-xr_features/xr_mode=0
-screen/immersive_mode=true
-screen/support_small=true
-screen/support_normal=true
-screen/support_large=true
-screen/support_xlarge=true
-user_permissions/0=""
-user_permissions/1=""
-custom_template/use_custom_build=false
-custom_template/build_path="res://android/build"
-custom_template/debug_format=0
-custom_template/export_format=0
-custom_template/min_sdk=
-custom_template/target_sdk=
-plugins/PottawaGameServices=false
-command_line/extra_args=""
-
-; === PC EXPORT HINTS (Godot configures these via the Export dialog) ===
-; Windows: produces .exe
-; macOS: produces .app or .dmg
-; Linux: produces .x86_64 (or arm64)

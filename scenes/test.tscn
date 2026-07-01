@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 64
+font_color = Color(1, 1, 1, 1)
+
+[node name="Test" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1080.0
+offset_bottom = 400.0
+text = "HOOD LEGENDS - TEST SCENE
+
+If you can see this, Godot is working.
+The problem is in the main game code.
+Tell the AI you saw this message."
+label_settings = SubResource("LabelSettings_1")
+horizontal_alignment = 1
+vertical_alignment = 1
