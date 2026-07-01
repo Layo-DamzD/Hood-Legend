@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://car_scene_001"]
+
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_car"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(2, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape_body"]
+size = Vector3(2, 1, 4)
+
+[node name="Car" type="VehicleBody3D"]
+mass = 1500.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.4, 0)
+script = ExtResource("1_car")
+car_brand = "Comet"
+top_speed = 80.0
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("BoxMesh_body")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape_body")
+
+[node name="FrontLeftWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.4, 1.4)
+use_steering = true
+use_brake = true
+suspension_rest_length = 0.3
+wheel_radius = 0.4
+
+[node name="FrontRightWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4, 1.4)
+use_steering = true
+use_brake = true
+suspension_rest_length = 0.3
+wheel_radius = 0.4
+
+[node name="RearLeftWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.4, -1.4)
+use_traction = true
+use_brake = true
+suspension_rest_length = 0.3
+wheel_radius = 0.4
+
+[node name="RearRightWheel" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4, -1.4)
+use_traction = true
+use_brake = true
+suspension_rest_length = 0.3
+wheel_radius = 0.4

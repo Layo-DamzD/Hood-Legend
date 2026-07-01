@@ -1,0 +1,9 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" fill="#1a1a1a"/>
+  <circle cx="64" cy="50" r="22" fill="#d4a574"/>
+  <rect x="38" y="70" width="52" height="50" rx="8" fill="#8b3a3a"/>
+  <rect x="48" y="80" width="32" height="6" fill="#1a1a1a"/>
+  <rect x="48" y="92" width="32" height="6" fill="#1a1a1a"/>
+  <rect x="48" y="104" width="32" height="6" fill="#1a1a1a"/>
+  <text x="64" y="125" font-family="Arial" font-size="10" font-weight="bold" text-anchor="middle" fill="#fff">HL</text>
+</svg>
