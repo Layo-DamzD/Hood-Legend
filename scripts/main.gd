@@ -1,5 +1,6 @@
 # Main Scene Controller - Manages the game loop, handles vehicle interaction,
 # wires up mobile UI, and detects platform automatically.
+# Includes debug output to help diagnose issues.
 extends Node3D
 
 @onready var player_manager = $PlayerManager
@@ -9,7 +10,7 @@ extends Node3D
 @onready var joystick = $MobileUI/Joystick
 @onready var btn_jump = $MobileUI/ButtonJump
 @onready var btn_run = $MobileUI/ButtonRun
-@onready var btn_action = $MobileUI/ButtonAction  # Enter/Exit vehicle
+@onready var btn_action = $MobileUI/ButtonAction
 @onready var btn_switch = $MobileUI/ButtonSwitch
 @onready var btn_fire = $MobileUI/ButtonFire
 
@@ -19,23 +20,52 @@ var active_player: Node = null
 var is_mobile: bool = false
 
 func _ready():
+    print("=== HOOD LEGENDS STARTING ===")
+    print("Platform: ", OS.get_name())
+    print("Godot version: ", Engine.get_version_info()["string"])
+    
     is_mobile = OS.has_feature("android") or OS.has_feature("ios")
+    print("Is mobile: ", is_mobile)
+    
+    # Verify all nodes loaded
+    print("Checking nodes...")
+    if player_manager:
+        print("  PlayerManager: OK")
+    else:
+        push_error("  PlayerManager: MISSING!")
+    if car:
+        print("  Car: OK")
+    else:
+        push_error("  Car: MISSING!")
+    if interact_label:
+        print("  InteractLabel: OK")
+    else:
+        push_error("  InteractLabel: MISSING!")
+    if mobile_ui:
+        print("  MobileUI: OK")
+    else:
+        push_error("  MobileUI: MISSING!")
     
     if is_mobile:
         mobile_ui.visible = true
         Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-        # Connect joystick output to InputManager-like behavior
-        # (We use Input.parse_input_event via mobile buttons - see mobile_button.gd)
-        # For joystick movement, we'll poll it directly in _process
     else:
         mobile_ui.visible = false
     
     _refresh_active_player()
+    
+    if active_player:
+        print("Active player: ", active_player.character_name)
+    else:
+        push_error("No active player found!")
+    
+    print("=== STARTUP COMPLETE ===")
+    print("Controls: WASD=move, Shift=run, Space=jump, Tab=switch, F=enter/exit car, Esc=quit")
+    print("================================")
 
 func _process(delta):
     _refresh_active_player()
     
-    # Feed joystick output into the input system on mobile
     if is_mobile:
         _inject_joystick_as_input()
     
@@ -43,24 +73,13 @@ func _process(delta):
     _handle_interaction()
 
 func _inject_joystick_as_input():
-    # The virtual joystick gives us a Vector2 output
-    # We need to translate that into Input actions that player.gd can read
     var joy = joystick.get_vector()
-    
-    # Create or update a virtual axis by simulating key presses
-    # We use a simpler approach: directly set the input via Input.action_press
-    # But Godot doesn't allow that, so we use InputEventAction
-    
-    # We'll just store it in a global and have player.gd read it
-    # For now, simulate keyboard events
     _set_action_state("move_left", joy.x < -0.2)
     _set_action_state("move_right", joy.x > 0.2)
     _set_action_state("move_forward", joy.y < -0.2)
     _set_action_state("move_back", joy.y > 0.2)
 
 func _set_action_state(action: String, pressed: bool):
-    # Simulate pressing/releasing an action
-    # We track pressed state and emit events
     if pressed and not Input.is_action_pressed(action):
         var ev = InputEventAction.new()
         ev.action = action
@@ -118,6 +137,3 @@ func _input(event):
                 Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
             else:
                 get_tree().quit()
-        else:
-            # On mobile, pause menu instead of quit
-            pass
