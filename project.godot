@@ -22,19 +22,19 @@ window/handheld/show_smallest_resolution=true
 [input]
 move_forward={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194320)]
+"events": [Object(InputEventKey,"keycode":4194320), Object(InputEventKey,"keycode":87)]
 }
 move_back={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194322)]
+"events": [Object(InputEventKey,"keycode":4194322), Object(InputEventKey,"keycode":83)]
 }
 move_left={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194319)]
+"events": [Object(InputEventKey,"keycode":4194319), Object(InputEventKey,"keycode":65)]
 }
 move_right={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"keycode":4194321)]
+"events": [Object(InputEventKey,"keycode":4194321), Object(InputEventKey,"keycode":68)]
 }
 jump={
 "deadzone": 0.5,
