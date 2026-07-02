@@ -1,9 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_car"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_body"]
-size = Vector3(2, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape_body"]
 size = Vector3(2, 1, 4)
@@ -16,13 +13,12 @@ script = ExtResource("1_car")
 car_brand = "Comet"
 top_speed = 80.0
 
-[node name="BodyMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-mesh = SubResource("BoxMesh_body")
-
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 shape = SubResource("BoxShape_body")
+
+[node name="ModelHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="FrontLeftWheel" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.4, 1.4)
