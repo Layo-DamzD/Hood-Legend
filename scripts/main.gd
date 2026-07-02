@@ -63,7 +63,7 @@ func _ready():
     print("Controls: WASD=move, Shift=run, Space=jump, Tab=switch, F=enter/exit car, Esc=quit")
     print("================================")
 
-func _process(delta):
+func _process(_delta):
     _refresh_active_player()
     
     if is_mobile:

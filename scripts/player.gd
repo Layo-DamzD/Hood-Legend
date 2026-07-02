@@ -26,21 +26,22 @@ var in_vehicle: bool = false
 
 # Node references
 @onready var camera_rig = $CameraRig
-@onready var camera = $CameraRig/Camera3D
+@onready var camera = $CameraRig/Camera3D  # The actual Camera3D node
 @onready var mesh = $Mesh
 
 # Input manager reference (set by main.gd)
 var input_manager: Node = null
 
 func _ready():
-    camera_rig.current = false
+    # Set the camera's current property (NOT the rig's - the rig is a Node3D)
+    camera.current = false
     var mat = StandardMaterial3D.new()
     mat.albedo_color = character_color
     mesh.material_override = mat
 
 func set_active(active: bool):
     is_active = active
-    camera_rig.current = active
+    camera.current = active  # Use camera, not camera_rig
     if active:
         Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
     else:
@@ -91,12 +92,14 @@ func _physics_process(delta):
     
     move_and_slide()
 
-func enter_vehicle(vehicle_node):
+# Called by vehicle system when entering/exiting a car
+# (parameter prefixed with _ to suppress unused warning)
+func enter_vehicle(_vehicle_node):
     in_vehicle = true
     visible = false
     velocity = Vector3.ZERO
 
-func exit_vehicle(vehicle_node, exit_position: Vector3):
+func exit_vehicle(_vehicle_node, exit_position: Vector3):
     in_vehicle = false
     visible = true
     global_position = exit_position
