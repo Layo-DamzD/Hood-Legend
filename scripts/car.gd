@@ -28,12 +28,13 @@ var _headlights_on: bool = false
 func _ready():
     set_can_sleep(false)
     
-    # Tune wheels
+    # Tune wheels (suspension_max_travel doesn't exist in Godot 4 - removed)
     for wheel in [front_left, front_right, rear_left, rear_right]:
         if wheel:
             wheel.suspension_stiffness = 40.0
-            wheel.suspension_max_travel = 0.3
             wheel.suspension_rest_length = 0.3
+            wheel.damping_compression = 0.85
+            wheel.damping_relaxation = 0.9
     
     # Build the procedural car model
     var CarBuilder = load("res://scripts/car_builder.gd")

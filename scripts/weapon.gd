@@ -32,11 +32,11 @@ var _weapon_model: Node3D = null
 var _muzzle_flash: OmniLight3D = null
 var _muzzle_flash_timer: float = 0.0
 
-# Bullet trail effect
-var _bullet_trails: Array = []
+# Bullet trail effect (reserved for future use)
+# var _bullet_trails: Array = []
 
-# HUD reference (set by player)
-var _hud: Node = null
+# HUD reference (set by player) - reserved for future use
+# var _hud: Node = null
 
 # Who is holding this weapon
 @onready var _player = get_parent()
